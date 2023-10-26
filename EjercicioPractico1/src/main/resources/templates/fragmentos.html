@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"></meta>
+    </head>
+    <body>
+        <div>
+            <h1>Registros de Estudiantes</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Identificación</th>
+                        <th>Nivel Cursado</th>
+                        <th>Edad</th>
+                        <th>Altura</th>
+                        <th>Peso</th>
+                        <th>Género</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="estudiante : ${estudiantes}">
+                        <td th:text="${estudiante.id}"></td>
+                        <td th:text="${estudiante.nombre}"></td>
+                        <td th:text="${estudiante.identificacion}"></td>
+                        <td th:text="${estudiante.nivelCursado}"></td>
+                        <td th:text="${estudiante.edad}"></td>
+                        <td th:text="${estudiante.altura}"></td>
+                        <td th:text="${estudiante.peso}"></td>
+                        <td th:text="${estudiante.genero}"></td>
+                        <td>
+                            <!-- Botón para actualizar el registro -->
+                            <a th:href="@{'/editar/' + ${estudiante.id}}">Editar</a> |
+                            <!-- Botón para eliminar el registro -->
+                            <a th:href="@{'/eliminar/' + ${estudiante.id}}" th:onclick="'return confirm('¿Estás seguro de que deseas eliminar este registro?');'">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <!-- Botón para agregar un nuevo registro -->
+                <a th:href="@{/nuevo-estudiante}">Agregar Estudiante</a>
+            </div>
+        </div>
+    </body>
+</html>
