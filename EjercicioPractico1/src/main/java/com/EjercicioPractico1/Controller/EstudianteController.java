@@ -1,68 +1,64 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.EjercicioPractico1.Controller;
+
 import com.EjercicioPractico1.Domain.Estudiantes;
 import com.EjercicioPractico1.Service.EstudiantesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+
+import org.springframework.stereotype.Controller;
 
 @Controller
 @RequestMapping("/estudiantes")
 public class EstudianteController {
 
-    // Inyecta el servicio de estudiantes
-    private final EstudiantesService estudianteService;
+    @Autowired
+    private EstudiantesService estudiantesService;
 
-    public EstudianteController(EstudiantesService estudianteService) {
-        this.estudianteService = estudianteService;
-    }
-
-    // Manejar la solicitud para mostrar la lista de estudiantes
-    @GetMapping("/")
+    // Listar todos los estudiantes
+    @GetMapping("/lista")
     public String listarEstudiantes(Model model) {
-        List<Estudiantes> estudiantes = estudianteService.listarEstudiantes();
+        List<Estudiantes> estudiantes = estudiantesService.listarEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
-        return "estudiantes/lista"; // Nombre de la vista para mostrar la lista de estudiantes
+        return "lista-estudiantes"; // Nombre de la vista Thymeleaf
     }
 
-    // Manejar la solicitud para mostrar el formulario de creación de un nuevo estudiante
-    @GetMapping("/nuevo")
-    public String mostrarFormularioNuevo(Model model) {
-        Estudiantes estudiante = new Estudiantes();
-        model.addAttribute("estudiante", estudiante);
-        return "estudiantes/formulario"; // Nombre de la vista para el formulario de creación
+    // Mostrar el formulario de creación de estudiante
+    @GetMapping("/crear")
+    public String mostrarFormularioCreacion(Model model) {
+        model.addAttribute("estudiante", new Estudiantes());
+        return "formulario-crear-estudiante"; // Nombre de la vista Thymeleaf
     }
 
-    // Manejar la solicitud para guardar un nuevo estudiante
-    @PostMapping("/nuevo")
-    public String crearEstudiante(@ModelAttribute("estudiante") Estudiantes estudiante) {
-        estudianteService.crearEstudiante(estudiante);
-        return "redirect:/estudiantes/"; // Redirige a la lista de estudiantes después de guardar
+    // Procesar el formulario de creación de estudiante
+    @PostMapping("/crear")
+    public String crearEstudiante(@ModelAttribute Estudiantes estudiante) {
+        estudiantesService.crearEstudiante(estudiante);
+        return "redirect:/estudiantes/lista";
     }
 
-    // Manejar la solicitud para mostrar el formulario de edición de un estudiante
+    // Mostrar el formulario de edición de estudiante
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
-        Estudiantes estudiante = estudianteService.obtenerEstudiantePorId(id);
+        Estudiantes estudiante = estudiantesService.obtenerEstudiantePorId(id);
         model.addAttribute("estudiante", estudiante);
-        return "estudiantes/formulario"; // Nombre de la vista para el formulario de edición
+        return "formulario-editar-estudiante"; // Nombre de la vista Thymeleaf
     }
 
-    // Manejar la solicitud para actualizar un estudiante
+    // Procesar el formulario de edición de estudiante
     @PostMapping("/editar/{id}")
-    public String actualizarEstudiante(@PathVariable Long id, @ModelAttribute("estudiante") Estudiantes estudiante) {
-        estudianteService.actualizarEstudiante(id, estudiante);
-        return "redirect:/estudiantes/"; // Redirige a la lista de estudiantes después de actualizar
+    public String editarEstudiante(@PathVariable Long id, @ModelAttribute Estudiantes estudiante) {
+        estudiantesService.actualizarEstudiante(id, estudiante);
+        return "redirect:/estudiantes/lista";
     }
 
-    // Manejar la solicitud para eliminar un estudiante
+    // Eliminar un estudiante
     @GetMapping("/eliminar/{id}")
     public String eliminarEstudiante(@PathVariable Long id) {
-        estudianteService.eliminarEstudiante(id);
-        return "redirect:/estudiantes/"; // Redirige a la lista de estudiantes después de eliminar
+        estudiantesService.eliminarEstudiante(id);
+        return "redirect:/estudiantes/lista";
     }
 }

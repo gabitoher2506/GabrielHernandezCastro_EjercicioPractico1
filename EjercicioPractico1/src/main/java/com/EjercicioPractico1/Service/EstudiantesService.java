@@ -7,10 +7,6 @@ package com.EjercicioPractico1.Service;
 import com.EjercicioPractico1.Domain.Estudiantes;
 import java.util.List;
 
-/**
- *
- * @author gabri
- */
 public interface EstudiantesService {
 
     List<Estudiantes> listarEstudiantes();

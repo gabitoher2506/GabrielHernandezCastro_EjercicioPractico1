@@ -8,5 +8,4 @@ import com.EjercicioPractico1.Domain.Estudiantes;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EstudiantesDao extends JpaRepository<Estudiantes, Long> {
-    // No es necesario agregar métodos aquí, heredarás los métodos CRUD de JpaRepository
 }

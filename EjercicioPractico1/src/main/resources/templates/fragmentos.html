@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Estudiantes</title>
         <meta charset="UTF-8"></meta>
+        <script src="static/js/VistasJS.js" type="text/javascript"></script>
     </head>
     <body>
         <div>
@@ -37,17 +34,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <td th:text="${estudiante.peso}"></td>
                         <td th:text="${estudiante.genero}"></td>
                         <td>
-                            <!-- Botón para actualizar el registro -->
-                            <a th:href="@{'/editar/' + ${estudiante.id}}">Editar</a> |
-                            <!-- Botón para eliminar el registro -->
-                            <a th:href="@{'/eliminar/' + ${estudiante.id}}" th:onclick="'return confirm('¿Estás seguro de que deseas eliminar este registro?');'">Eliminar</a>
+                            <button onclick="editarEstudiante()">Editar</button> |
+                            <button onclick="eliminarEstudiante()">Eliminar</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
             <div>
-                <!-- Botón para agregar un nuevo registro -->
                 <a th:href="@{/nuevo-estudiante}">Agregar Estudiante</a>
             </div>
         </div>

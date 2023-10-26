@@ -28,16 +28,6 @@ public class Estudiantes implements Serializable {
     public Estudiantes() {
     }
 
-    /**
-     *
-     * @param nombre
-     * @param identificacion
-     * @param nivelCursado
-     * @param edad
-     * @param altura
-     * @param peso
-     * @param genero
-     */
     public Estudiantes (String nombre, String identificacion, int nivelCursado, int edad, double altura, double peso, String genero) {
         this.nombre = nombre;
         this.identificacion = identificacion;

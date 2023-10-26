@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Título de tu Sitio</title>
-    <!-- Agrega enlaces a tus archivos CSS aquí si los tienes -->
-    <link href="../static/estilos.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <ul>
-                <li><a th:href="@{/}">Inicio</a></li>
-                <li><a th:href="@{/estudiantes}">Estudiantes</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <div th:replace="fragmentos.html"></div>
-    </main>
-    <footer>
-        <p>Hecho por Gabrielito</p>
-    </footer>
-    <script th:src="@{/js/script.js}"></script>
-</body>
+    <head>
+        <title>Estudiantes</title>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <ul>
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/estudiantes}">Estudiantes</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div th:replace="fragmentos.html"></div>
+        </main>
+        <footer>
+            <p>Hecho por Gabrielito</p>
+        </footer>
+        <script src="static/js/VistasJS.js" type="text/javascript"></script>
+    </body>
 </html>
